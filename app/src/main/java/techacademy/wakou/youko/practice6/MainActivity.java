@@ -1,5 +1,6 @@
 package techacademy.wakou.youko.practice6;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.util.Log;
 import android.content.DialogInterface;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button  button3 =(Button)findViewById(R.id.button3);
         button3.setOnClickListener(this);
 
+        Button button4 = (Button)findViewById(R.id.button4);
+        button4.setOnClickListener(this);
+
         mTextView = (TextView) findViewById(R.id.textView);
         mEditText = (EditText) findViewById(R.id.editText);
     }
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             showAlertDialog();
         }else if(v.getId() == R.id.button3){
             showTimePickerDialog();
+        }else if(v.getId() == R.id.button4){
+            showDatePickerDialog();
         }
     }
 
@@ -95,5 +102,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 0,
                 true);
         timePickerDialog.show();
+    }
+
+    private void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int mothOfYear, int dayOfMonth) {
+                        Log.d("UI-PSRTS",String.valueOf(year) + "/"+String.valueOf(year)+ "/"+String.valueOf(dayOfMonth));
+                    }
+                },
+                2016,
+                6,
+                1);
+
+        datePickerDialog.show();
+
     }
 }
